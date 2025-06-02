@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Posts collection
+    match /posts/{postId} {
+      allow read: if true;  // Allow anyone to read posts
+      allow create: if true; // Allow anyone to create posts
+      
+      // Replies subcollection
+      match /replies/{replyId} {
+        allow read: if true;   // Allow anyone to read replies
+        allow create: if true; // Allow anyone to create replies
+      }
+    }
+  }
+}
